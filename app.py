@@ -18,7 +18,6 @@ def listenRequired(server):
 
   print('Connected by ', client_addr)
 
-
   request = client.recv(1024)
 
   respond = 'GET HTTP/1.1\r\n'
@@ -28,8 +27,6 @@ def listenRequired(server):
   client.send(respond.encode('utf=8'))
 
   client.close()
-  client,addr = server.accept()
-
 
 def main():
   server = listenTCP()
@@ -41,7 +38,6 @@ def main():
     listenRequired(server)
   else:
     print('Server close')
-
 
 if __name__ == "__main__":
   main()
