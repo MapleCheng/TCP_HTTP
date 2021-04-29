@@ -19,8 +19,14 @@ def listenRequired(server):
   print('Connected by ', client_addr)
 
   request = client.recv(1024)
+  print(request)
 
+  return client
+
+def httpResponse(client):
   respond = 'GET HTTP/1.1\r\n'
+  respond += 'Content-Type: text/html; charset=utf-8\r\n'
+  respond += 'Server: TCP_HTTP/0.0.1\r\n'
   respond += '\r\n'
   respond += 'Hello Python'
 
@@ -33,9 +39,10 @@ def main():
 
   print("server runing in ", bind_port)
 
-
   while server != 0:
-    listenRequired(server)
+    client = listenRequired(server)
+
+    httpResponse(client)
   else:
     print('Server close')
 
